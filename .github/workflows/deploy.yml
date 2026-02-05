@@ -29,3 +29,6 @@ jobs:
             git pull origin main
             # Kopiujemy zawartość (pliki .html i .css widoczne na screenie) do www
             cp -r * ../www/
+
+# Minor change to trigger workflow
+# Updated timestamp: February 6, 2026
