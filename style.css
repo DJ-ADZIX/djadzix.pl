@@ -1,0 +1,1234 @@
+/* style.css - WERSJA RED & BLACK */
+
+/* --- RESET I BAZA --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@1,800&display=swap');
+
+/* --- RESET I BAZA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- CUSTOM SCROLLBAR (Chrome, Edge, Safari) --- */
+::-webkit-scrollbar {
+    width: 10px; /* Nieco węższy */
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a; /* Bardzo ciemny szary */
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b0000, #000000); /* Gradient ciemnoczerwono-czarny */
+    border-radius: 0; /* Prostokątny kształt */
+    border: 2px solid #0a0a0a; /* Margines dla efektu "pływania" */
+    transition: box-shadow 0.3s ease; /* Płynne przejścia dla cienia */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    /* Po najechaniu, poświata pojawia się, a gradient pozostaje ten sam */
+    box-shadow: 0 0 5px #ff0000, 0 0 15px rgba(255, 0, 0, 0.8); /* Intensywna poświata "neon" */
+}
+
+h1 { 
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 3.5rem; 
+    text-align: center; 
+
+    /* tylko obrys bez wypełnienia */
+    color: transparent;
+    -webkit-text-fill-color: transparent; /* WebKit */
+    -webkit-text-stroke: 0.3px #ffffff;     /* obrys (stroke) */
+    text-shadow: none;                     /* usuń cień, żeby obrys był czysty */
+}
+
+html {
+    overflow-x: hidden;
+    scrollbar-width: thin; /* Firefox - cieńszy pasek */
+    scrollbar-color: #8b0000 #0a0a0a; /* Firefox - Kciuk (ciemnoczerwony) i Tło (ciemnoszare) */
+}
+
+body {
+    /* Zmiana tła na Czarny + Czerwony */
+    background: linear-gradient(-80deg, #000000, #4a0000, #200000, #000000);
+    background-size: 100% 400%;
+    animation: gradientBG 25s ease infinite;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- NAWIGACJA --- */
+nav {
+    display: flex;
+    justify-content: center; /* Wycentrowanie linków na środku ekranu */
+    align-items: center;
+    padding: 0 50px; /* Padding tylko po bokach, wyśrodkowanie w pionie załatwia align-items */
+    background: rgba(0, 0, 0, 0.8); /* Ciemniejsze tło nawigacji */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3); /* Czerwona linia pod menu */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 80px;
+    box-sizing: border-box; /* Gwarantuje, że padding i border są wliczane w wysokość 80px */
+}
+
+/* STYL DLA LOGO OBRAZKOWEGO */
+.logo {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Ustawiamy logo poza normalnym przepływem, by nie wpływało na centrowanie linków */
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    height: 50px; /* Ustalona wysokość logo, żeby nie rozwaliło menu */
+    width: auto;  /* Szerokość dopasuje się sama */
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Lekkie powiększenie po najechaniu */
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid transparent; /* Przygotowanie pod hover */
+}
+
+/* ZMIANA KOLORU AKCENTU NA CZERONY (#ff0000) */
+.nav-links a:hover, .nav-links a.active {
+    color: #fff;
+    background-color: #ff0000; 
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    border-color: #ff0000;
+}
+
+/* --- SEKCJE OGÓLNE --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+p { color: #ddd; line-height: 1.6; max-width: 700px; text-align: center; margin-bottom: 30px; }
+
+/* --- GRID Z BOKSAMI (Karty) --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.grid-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Zmniejszono minmax dla lepszego dopasowania na mniejszych ekranach */
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.6); /* Ciemniejsze tło kart */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block; /* Ważne, jeśli zamieniamy div na a */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #ff0000; /* Czerwona ramka przy najechaniu */
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2); /* Czerwona poświata */
+}
+
+.offer-grid .card {
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: linear-gradient(145deg, rgba(0,0,0,0.9), rgba(30,0,0,0.7)); /* Ciemniejszy, elegancki gradient */
+    padding: 15px 0;
+}
+
+.montaz-grid .card {
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: linear-gradient(145deg, rgba(0,0,0,0.9), rgba(30,0,0,0.7));
+}
+
+/* Centrowanie tekstu specyficznie dla oferty */
+.offer-grid .card-info {
+    text-align: center;
+}
+
+.offer-icon {
+    font-size: 2.4rem;
+    color: #ff0000;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.card:hover .offer-icon {
+    transform: scale(1.1) translateY(-5px);
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+}
+
+.offer-grid .submit-btn {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-info { padding: 20px; text-align: left; }
+.card-info h3 { text-align:center; color: #ff0000; margin-bottom: 10px; font-size: 1.3rem; } /* Czerwone nagłówki */
+.card-info p { text-align: center; font-size: 0.95rem; margin-bottom: 0; color: #ccc; }
+
+.card-info h4 {
+    text-align: center;
+    color: #fff;/* Jasnoczerwony kolor dla cen */
+    margin-top: 15px;
+}
+
+.card .submit-btn {
+    padding: 10px 25px;
+    font-size: 0.85rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+/* --- FORMULARZ KONTAKTOWY --- */
+.contact-wrapper {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 600px;
+
+    /* Wyśrodkowanie na osi Y */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 15px; }
+
+input, textarea {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus { 
+    border-color: #ff0000; 
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); 
+}
+
+.submit-btn {
+    padding: 15px;
+    background: linear-gradient(90deg, #ff0000, #8b0000) !important;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.submit-btn:hover { 
+    background: #fff !important; 
+    color: #ff0000 !important;
+    box-shadow: 0 0 20px #ff0000; 
+}
+
+/* --- FOOTER --- */
+footer {
+    position: relative; /* Ensure it stays in the normal document flow */
+    z-index: 10; /* Bring it above other elements */
+    padding: 25px;
+    text-align: center;
+    background: #000;
+    border-top: 1px solid rgba(255, 0, 0, 0.3); /* Czerwona linia jak w nav-links */
+    color: #5f5f5f; /* Szary kolor tekstu */
+    font-size: 0.78rem;
+    font-family: 'Roboto', sans-serif;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Reset stylów dla paragrafu w stopce (ważne dla wersji zapasowej) */
+footer p {
+    margin: 0;
+    color: inherit;
+    max-width: 100%; /* Reset globalnego ograniczenia szerokości, aby tekst był na środku */
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    /* Przywróć normalne pozycjonowanie logo na mniejszych ekranach */
+    .logo {
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
+    }
+    
+    nav { flex-direction: column; gap: 15px; padding: 15px; height: auto; max-height: none; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .nav-links a { font-size: 0.85rem; padding: 8px 12px; }
+}
+
+
+
+/* --- NOWE ANIMACJE DLA SCROLLOWANIA --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specjalny efekt dla obrazków - wlot z lewej */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1s ease-out;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Specjalny efekt dla tekstu - wlot z prawej */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s ease-out;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Sekcja o mnie - dodatkowe kontenery */
+.about-extra {
+    margin-top: 100px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.info-text { 
+    flex: 1; 
+    text-align: left; 
+}
+
+.info-text h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.info-text p {
+    text-align: left;
+    margin: 0 0 20px 0;
+    max-width: 100%;
+}
+
+.info-image { 
+    flex: 1; 
+    height: 300px; 
+    background: rgba(255,0,0,0.1); 
+    border: 2px solid #ff0000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.info-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .info-row { flex-direction: column; text-align: center; }
+
+    /* Wymuszenie kolejności na telefonie: Tekst (O NAS) -> Zdjęcie */
+    .info-text {
+        order: -1;
+    }
+
+    .info-image {
+        flex: none;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* --- SOCIAL SIDEBAR --- */
+.social-sidebar {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    border-radius: 0 5px 5px 0; /* Zaokrąglenie tylko z prawej strony */
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-left: none;
+}
+
+/* Kolory po najechaniu - dopasowane do Twojego czerwonego stylu */
+.social-icon:hover {
+    width: 70px; /* Lekkie wysunięcie */
+    background: #ff0000;
+    box-shadow: 0 0 15px #ff0000;
+    padding-left: 10px;
+}
+
+/* Opcjonalnie: kolory specyficzne dla marek przy najechaniu */
+.social-icon.fb:hover { background: #1877F2; box-shadow: 0 0 15px #1877F2; border-color: #1877F2; }
+.social-icon.yt:hover { background: #FF0000; box-shadow: 0 0 15px #FF0000; border-color: #FF0000; }
+
+/* Specyficzny gradient dla Instagrama przy najechaniu */
+.social-icon.ig:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 0 20px rgba(214, 36, 159, 0.6);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* Opcjonalnie: animacja "pływającego" gradientu */
+@keyframes instaGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.social-icon.ig:hover {
+    background-size: 200% 200%;
+    animation: instaGradient 3s ease infinite;
+}
+
+/* Ukrycie na bardzo małych ekranach, żeby nie zasłaniały treści */
+@media (max-width: 480px) {
+    .social-sidebar {
+        display: none;
+    }
+}
+
+.hero-text-section {
+    min-height: 120vh; /* Zwiększamy wysokość, by mieć miejsce na scroll */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px; /* Przesunięcie całej sekcji w dół dla lepszego wyśrodkowania */
+}
+
+.reveal-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+    text-align: center;
+}
+
+.reveal-text p {
+    text-align: center; /* Center the text horizontally */
+    margin: 0 auto; /* Ensure proper centering */
+}
+
+#heroImage {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Na początku ukryte, pojawia się po scrollu */
+    transform: scale(1.1); /* Lekkie powiększenie na start */
+    opacity: 1; /* Na początku widoczne */
+    transform: scale(1); /* Normalny rozmiar */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Style for the oval image in the hero section */
+.image-circle-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.image-circle-container img {
+    width: 290px; /* Increased size */
+    height: 290px; /* Increased size */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff0000; /* Slightly thicker border */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Enhanced shadow */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for disappearing */
+}
+
+/* Hide the hero section (background and oval image) on scroll */
+.hero-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for disappearing */
+}
+
+.hero-image-container.hidden {
+    opacity: 1; /* Kontener pozostaje widoczny */
+    transform: none;
+}
+
+.hero-image-container.hidden #heroImage {
+    opacity: 1; /* Grafika pojawia się na całym ekranie */
+    transform: scale(1); /* Powrót do normalnego rozmiaru */
+    opacity: 0; /* Grafika znika */
+    transform: scale(1.1); /* Lekkie powiększenie przy znikaniu */
+}
+
+.hero-image-container.hidden .image-circle-container {
+    opacity: 0; /* Owalne zdjęcie znika, ustępując miejsca tłu */
+    transform: translateX(-50%) scale(0.8);
+}
+
+/* Układ dwóch kolumn obok siebie */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Dostosowanie szerokości pojedynczego formularza */
+.contact-wrapper {
+    flex: 1;
+    min-width: 300px; /* Zmniejszono minimalną szerokość */
+    max-width: 100%;
+}
+
+.custom-select option {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* Podświetlenie formularza wyceny */
+.highlight-border {
+    border: 1px solid rgba(255, 0, 0, 0.5) !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+}
+
+/* Złoty/Czerwony przycisk dla wyceny */
+.gold-btn {
+    background: linear-gradient(90deg, #ff0000, #8b0000) !important;
+    color: #fff !important;
+}
+
+/* Responsywność - na komórkach jeden pod drugim */
+@media (max-width: 850px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-wrapper {
+        width: 100%;
+    }
+}
+
+/* --- STYLE STRONY PODZIĘKOWANIA --- */
+.thanks-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.check-icon {
+    font-size: 80px;
+    color: #ff0000;
+    margin-bottom: 20px;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    animation: bounceIn 0.8s ease; /* Dodatkowy efekt wejścia */
+}
+
+.back-home {
+    margin-top: 30px;
+    padding: 12px 35px;
+    border: 1px solid #ff0000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background: #ff0000;
+    box-shadow: 0 0 25px #ff0000;
+    transform: translateY(-3px);
+}
+
+.countdown {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+}
+
+/* Animacja ikony ptaszka */
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Specjalna nawigacja dla strony podziękowań */
+nav.nav-thanks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* Półprzezroczysty czarny - 0.5 to 50% przezroczystości */
+    background: rgba(0, 0, 0, 0.5) !important; 
+    
+    /* Rozmycie tła za paskiem */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    z-index: 9999;
+
+    /* Wyraźny czerwony border na dole paska */
+    border-bottom: 2px solid #ff0000 !important;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.logo-centered img {
+    height: 50px;
+    width: auto;
+}
+
+.thanks-container {
+    padding-top: 100px; /* Odstęp, aby treść zaczynała się pod paskiem */
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- ANIMACJE DLA OBRAZKA --- */
+.animated-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 59px; /* Wsunięcie grafik do środka (odstęp od krawędzi) */
+    overflow: visible; /* Allow the glow to be fully visible */
+    padding: 40px; /* Add padding to ensure the glow is not cut off */
+}
+
+.animated-image {
+    width: 1200px; /* Current size */
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Rounded corners */
+    border: 2px solid #ff0000; /* Reduced border thickness */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Adjusted red glow */
+    opacity: 0; /* Initially hidden */
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-out;
+    will-change: transform, opacity;
+}
+
+.animated-image.pos-left {
+    transform: translateX(-500px); /* Zwiększony dystans startowy dla lepszego efektu wjazdu */
+}
+
+.animated-image.pos-right {
+    transform: translateX(500px); /* Zwiększony dystans startowy dla lepszego efektu wjazdu */
+}
+
+.animated-image.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animated-image.delay-500 {
+    transition-delay: 0.5s;
+}
+
+/* --- OPTYMALIZACJA MOBILNA (DODATKOWE STYLE) --- */
+@media (max-width: 768px) {
+    /* Typografia */
+    h1 { font-size: 2.2rem; }
+    p { font-size: 0.9rem; padding: 0 10px; }
+
+    /* Footer - mniejsza czcionka */
+    footer { padding: 15px; }
+    footer p { font-size: 0.65rem; padding: 0; }
+    
+    /* Hero Section */
+    .hero-text-section {
+        min-height: 80vh; /* Mniejsza wysokość na mobilkach */
+        padding-top: 100px;
+    }
+    
+    .image-circle-container {
+        bottom: 15%; /* Wyżej na mobilkach */
+    }
+    
+    .image-circle-container img {
+        width: 200px; /* Mniejsze zdjęcie owalne */
+        height: 200px;
+    }
+
+    /* Kontenery */
+    .container { padding: 0 15px; }
+    main { padding: 30px 10px; }
+
+    /* Karty i Grid */
+    .grid-box {
+        grid-template-columns: 1fr; /* Jedna kolumna na telefonach */
+        padding: 0 10px;
+    }
+
+    /* Formularze */
+    .contact-wrapper {
+        padding: 25px;
+        min-width: 100%; /* Pełna szerokość */
+    }
+    
+    .contact-container {
+        padding: 10px;
+        gap: 40px;
+    }
+
+    /* Animowane obrazy (Animated Image Container) */
+    .animated-image-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px; /* Mniejszy padding */
+        flex-direction: column; /* Jeden pod drugim jeśli są dwa */
+        gap: 20px;
+    }
+
+    .animated-image {
+        width: 100%;
+        border-width: 1px; /* Cieńsza ramka */
+    }
+
+    /* Zmniejszenie dystansu animacji na telefonie, żeby strona nie "pływała" na boki */
+    .animated-image.pos-left { transform: translateX(-50px); }
+    .animated-image.pos-right { transform: translateX(50px); }
+    
+    .animated-image.active {
+        transform: translateX(0);
+    }
+
+    /* Sekcja O mnie - obrazek i tekst jeden pod drugim */
+    .info-row {
+        gap: 30px;
+    }
+}
+
+/* --- SPLASH SCREEN (INTRO) --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Czarne tło zasłaniające stronę */
+    z-index: 10000; /* Najwyższa warstwa, nad menu i wszystkim innym */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, visibility 1s ease; /* Płynne zanikanie */
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#splash-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- STYLE DLA STRONY KONTAKT (CLEANUP) --- */
+.contact-wrapper h2 {
+    text-align: center;
+}
+
+/* Rozszerzony blok WYCENA */
+.contact-wrapper.valuation {
+    max-width: 100%;
+    flex: 2; /* Zajmuje więcej miejsca niż pozostałe */
+}
+
+/* Mniejszy blok DANE KONTAKTOWE */
+.contact-wrapper.info {
+    max-width: 100%;
+    flex: 0.8;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-wrapper.info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.contact-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.contact-info-item:hover {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: #ff0000;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-info-item i {
+    font-size: 1.3rem;
+    color: #ff0000;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-info-item p {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+/* --- SLIDESHOW / GALERIA ZDJĘĆ --- */
+.slideshow-container {
+    position: relative;
+    overflow: hidden;
+    /* Ustawiamy proporcje 16:9 (standard wideo), dostosuj w razie potrzeby */
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+}
+
+/* Jeśli używamy razem z klasą .animated-image, musimy upewnić się, że display jest block */
+.animated-image.slideshow-container {
+    display: block;
+    height: auto; /* Wysokość wynika z aspect-ratio */
+}
+
+.slideshow-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+
+.slideshow-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* --- PODSTRONA VIDEO (TELEDYSKI) --- */
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.video-wrapper {
+    width: 100%;
+    max-width: 550px; /* Zmniejszono, aby mieściły się obok siebie */
+    margin: 0; /* Marginesy obsługuje teraz video-grid */
+    aspect-ratio: 16 / 9; /* Format panoramiczny */
+    border-radius: 20px;
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    overflow: hidden;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.back-btn-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.back-btn-container .submit-btn {
+    padding: 8px 25px;
+    font-size: 0.8rem;
+    border: 1px solid #ff0000;
+    background: #000 !important;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* --- ZASTĘPSTWO DLA IFRAME (GDY BLOKADA YOUTUBE) --- */
+.video-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    text-decoration: none;
+}
+
+.video-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.video-placeholder:hover img {
+    opacity: 1;
+}
+
+.play-icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #ff0000;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease;
+}
+
+.video-placeholder:hover .play-icon-overlay {
+    transform: translate(-50%, -50%) scale(1.1);
+    color: #fff;
+}
+
+/* --- GALERIA DJ (MASONRY - ORYGINALNE WIELKOŚCI) --- */
+.dj-gallery {
+    column-count: 3;
+    column-gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 40px auto;
+    display: block;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(0.98); /* Lekkie wciśnięcie */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Cień zamiast ramki */
+    z-index: 2;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsywność */
+@media (max-width: 1024px) {
+    .dj-gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .dj-gallery {
+        column-count: 1;
+    }
+}
+
+/* --- MANUAL CAROUSEL (SLIDER ZE STRZAŁKAMI) --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    z-index: 10;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 0, 0, 0.8);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dot.active {
+    background: #ff0000;
+    transform: scale(1.2);
+}
+
+/* --- GÓRNY RZĄD GALERII (3 ZDJĘCIA) --- */
+.gallery-top-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 15px auto;
+}
+
+.gallery-top-row .gallery-item {
+    flex: 1;
+    margin-bottom: 0;
+    height: 300px; /* Ustalona wysokość dla równego rzędu */
+}
+
+.gallery-top-row .gallery-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .gallery-top-row {
+        flex-direction: column;
+        height: auto;
+    }
+    .gallery-top-row .gallery-item {
+        height: auto;
+        margin-bottom: 15px;
+    }
+    .gallery-top-row .gallery-item img {
+        height: auto;
+    }
+}
+
+/* --- DRUGI RZĄD GALERII (2 ZDJĘCIA) --- */
+.gallery-split-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 15px auto;
+}
+
+.gallery-split-row .gallery-item {
+    flex: 1;
+    margin-bottom: 0;
+    height: 350px; /* Nieco wyższe dla 2 zdjęć */
+}
+
+.gallery-split-row .gallery-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .gallery-split-row {
+        flex-direction: column;
+        height: auto;
+    }
+    .gallery-split-row .gallery-item {
+        height: auto;
+        margin-bottom: 15px;
+    }
+}

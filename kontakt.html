@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONTAKT - xJestemAdzix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="GRAFIKI/PNG/A_LOGO.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Nawigacja jest ładowana dynamicznie z index.html przez script.js -->
+
+<main>
+    <div class="contact-container reveal">
+        <div class="contact-wrapper highlight-border">
+            <h2>NAPISZ DO NAS</h2><br>
+
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="a56609e2-e731-42ed-8c7a-b6658409e3c3">
+                <input type="hidden" name="redirect" value="[DOKŁADNY ADRES STRONY]">
+                <input type="text" placeholder="Imię" name="IMIE:" required>
+                <input type="email" placeholder="Adres e-mail" name="EMAIL:" required>
+                <textarea rows="5" placeholder="Wiadomość..." name="WIADOMOŚĆ:" required></textarea>
+                <button type="submit" class="submit-btn">WYŚLIJ WIADOMOŚĆ</button>
+            </form>
+        </div>
+
+        <div class="contact-wrapper highlight-border valuation">
+            <h2>WYCENA</h2><br>
+
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="8bdeff6c-0b23-4ca7-87c7-150019867400">
+                <input type="hidden" name="redirect" value="[DOKŁADNY ADRES STRONY]">
+                <input type="text" placeholder="Imię i Nazwisko" name="IMIE/NAZWISKO:" required>
+                <input type="tel" name="NUMER TELEFONU:"
+                id="phoneInput" 
+                placeholder="Numer telefonu" 
+                pattern="^\+?[0-9]*$" 
+                title="Dozwolone są tylko cyfry, opcjonalnie poprzedzone znakiem +" required>
+
+                <input type="email" placeholder="Adres e-mail" name="EMAIL:" required>
+                <input type="text" placeholder="Rodzaj Imprezy (Urodziny itp.)" name="RODZAJ IMPREZY:" required>
+                <input type="text" placeholder="Data Imprezy" name="DATA IMPREZY:" required>
+                <input type="text" placeholder="Miejsce Imprezy (Miasto/Sala)" name="MIEJSCE IMPREZY:" required>
+                <input type="text" placeholder="*Czas trwania (Ile godzin ognia na parkiecie?)" name="CZAS TRWANIA:">
+                <button type="submit" class="submit-btn gold-btn">POPROŚ O WYCENĘ</button>
+            </form>
+        </div>
+
+        <div class="contact-wrapper highlight-border info">
+            <h2>DANE KONTAKTOWE</h2><br>
+
+            <div class="contact-info-box">
+                <div class="contact-info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+48 730 566 390</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>adzixdj@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+    <div class="social-sidebar">
+    <a href="https://facebook.com/AdzixPL" class="social-icon fb" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://youtube.com/AdzixPL" class="social-icon yt" target="_blank">
+        <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://instagram.com/xjestemadzix" class="social-icon ig" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
