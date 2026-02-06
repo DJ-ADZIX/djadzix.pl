@@ -269,7 +269,7 @@ input, textarea {
     border: none;
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.85rem;
     outline: none;
     border: 1px solid transparent;
     transition: 0.3s;

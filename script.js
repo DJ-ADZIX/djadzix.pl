@@ -159,11 +159,19 @@ function handleHeroEffects() {
     function insertNavAndMarkActive(nav) {
         document.body.insertBefore(nav, document.body.firstChild);
         const links = nav.querySelectorAll('.nav-links a');
-        const path = window.location.pathname.split('/').pop();
+        const path = window.location.pathname.split('/').pop().toLowerCase();
+
+        // Mapowanie podstron do sekcji w menu (np. reels -> VIDEO)
+        const subPageMap = {
+            'reels.html': 'montaz.html',
+            'imprezy.html': 'montaz.html',
+            'klasyczne.html': 'montaz.html'
+        };
+
         links.forEach(a => {
             a.classList.remove('active');
             const href = a.getAttribute('href');
-            if (href === path || (href === 'index.html' && (path === '' || path === 'index.html'))) {
+            if (href === path || (href === 'index.html' && (path === '' || path === 'index.html')) || subPageMap[path] === href) {
                 a.classList.add('active');
             }
         });
