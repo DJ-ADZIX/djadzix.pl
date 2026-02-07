@@ -93,6 +93,8 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 80px; /* Odsunięcie treści od góry dla fixed nav */
+    overflow-x: hidden; /* Blokada przewijania na boki */
+    width: 100%;
 }
 
 /* Blokada zaznaczania zdjęć na telefonie */
