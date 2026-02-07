@@ -10,6 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-tap-highlight-color: transparent; /* Usuwa niebieskie podświetlenie przy kliknięciu */
 }
 
 /* --- CUSTOM SCROLLBAR (Chrome, Edge, Safari) --- */
@@ -47,6 +48,35 @@ h1 {
     text-shadow: none;                     /* usuń cień, żeby obrys był czysty */
 }
 
+/* --- Podkreślenie dla H2 --- */
+/* Wspólne style dla wszystkich podkreślanych H2 */
+.container > h2,
+.contact-wrapper h2,
+.info-text h2 {
+    position: relative;
+    padding-bottom: 10px; /* Odstęp na linię */
+}
+
+/* Pseudoelement tworzący linię */
+.container > h2::after,
+.contact-wrapper h2::after,
+.info-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ff0000;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+}
+
+/* Centrowanie dla tytułów, które tego wymagają */
+.container > h2,
+.contact-wrapper h2 {
+    display: block; /* Rozciąga element na całą szerokość kontenera */
+}
+
 html {
     overflow-x: hidden;
     scrollbar-width: thin; /* Firefox - cieńszy pasek */
@@ -54,15 +84,23 @@ html {
 }
 
 body {
-    /* Zmiana tła na Czarny + Czerwony */
-    background: linear-gradient(-80deg, #000000, #4a0000, #200000, #000000);
-    background-size: 100% 400%;
-    animation: gradientBG 25s ease infinite;
+    background-color: #000000;
+    /* Czerwona kula z dużym blurem w centrum */
+    background-image: radial-gradient(circle at center, rgba(200, 0, 0, 0.4) 0%, #000000 50%);
+    background-attachment: fixed;
     color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    padding-top: 80px; /* Odsunięcie treści od góry dla fixed nav */
+}
+
+/* Blokada zaznaczania zdjęć na telefonie */
+img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 @keyframes gradientBG {
@@ -83,8 +121,9 @@ nav {
     background: rgba(0, 0, 0, 0.8); /* Ciemniejsze tło nawigacji */
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 0, 0, 0.3); /* Czerwona linia pod menu */
-    position: sticky;
+    position: fixed; /* Zmiana na fixed, aby nawigacja była zawsze przyklejona */
     top: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
     height: 80px;
@@ -104,11 +143,13 @@ nav {
 .logo img {
     height: 50px; /* Ustalona wysokość logo, żeby nie rozwaliło menu */
     width: auto;  /* Szerokość dopasuje się sama */
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.6)); /* Delikatna czerwona poświata */
 }
 
 .logo img:hover {
     transform: scale(1.05); /* Lekkie powiększenie po najechaniu */
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 1)); /* Intensywny blask po najechaniu */
 }
 
 .nav-links {
@@ -333,8 +374,12 @@ footer p {
         left: auto;
         top: auto;
     }
+
+    /* Na telefonie wracamy do sticky, żeby menu o zmiennej wysokości nie zasłaniało treści */
+    nav { position: sticky; flex-direction: column; gap: 15px; padding: 15px; height: auto; max-height: none; }
     
-    nav { flex-direction: column; gap: 15px; padding: 15px; height: auto; max-height: none; }
+    /* Resetujemy padding body na telefonie, bo sticky nav zajmuje miejsce w dokumencie */
+    body { padding-top: 0; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
     .nav-links a { font-size: 0.85rem; padding: 8px 12px; }
 }
@@ -399,6 +444,7 @@ footer p {
 .info-text h2 {
     text-align: left;
     margin-bottom: 15px;
+    display: inline-block; /* Dopasowuje szerokość do tekstu */
 }
 
 .info-text p {
@@ -546,6 +592,24 @@ footer p {
     transform: translateX(-50%);
     text-align: center;
     transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animacja sonaru (echa) dla zdjęcia głównego */
+.image-circle-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    animation: sonarPulse 5s infinite ease-out; /* Wydłużony czas dla płynności */
+    z-index: -1;
 }
 
 .image-circle-container img {
@@ -556,6 +620,19 @@ footer p {
     border: 2px solid #ff0000; /* Slightly thicker border */
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Enhanced shadow */
     transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for disappearing */
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes sonarPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.8); /* Zwiększony zasięg fali */
+        opacity: 0;
+    }
 }
 
 /* Hide the hero section (background and oval image) on scroll */
