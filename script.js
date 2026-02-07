@@ -220,9 +220,24 @@ window.addEventListener('scroll', () => {
 
 // Dynamically load the footer from a single file
 function loadFooter() {
+    // Sprawdzamy czy FontAwesome jest załadowane, jeśli nie - dodajemy (dla ikonek)
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(link);
+    }
+
     const footerHTML = `
         <footer>
-            <p>&copy; 2026 AdzixPL. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-inner">
+                <p>&copy; 2026 AdzixPL. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/AdzixPL" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/xjestemadzix" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@AdzixPL" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
         </footer>`;
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }

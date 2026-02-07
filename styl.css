@@ -2,7 +2,7 @@
 
 /* --- RESET I BAZA --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Teko:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@1,800&family=Rajdhani:wght@500;600;700&display=swap');
 
 /* --- RESET I BAZA --- */
 * {
@@ -35,7 +35,7 @@
 }
 
 h1 { 
-    font-family: 'Public Sans', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-weight: 800;
     font-style: italic;
     font-size: 3.5rem; 
@@ -53,6 +53,9 @@ h1 {
 .container > h2,
 .contact-wrapper h2,
 .info-text h2 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     position: relative;
     padding-bottom: 10px; /* Odstęp na linię */
 }
@@ -160,7 +163,11 @@ nav {
 }
 
 .nav-links a {
-    font-weight: 500;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
     padding: 10px 15px;
     border-radius: 5px;
@@ -169,10 +176,11 @@ nav {
 
 /* ZMIANA KOLORU AKCENTU NA CZERONY (#ff0000) */
 .nav-links a:hover, .nav-links a.active {
-    color: #fff;
-    background-color: #ff0000; 
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.1); 
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), inset 0 0 10px rgba(255, 0, 0, 0.2);
     border-color: #ff0000;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
 }
 
 /* --- SEKCJE OGÓLNE --- */
@@ -185,7 +193,19 @@ main {
     padding: 50px 20px;
 }
 
-p { color: #ddd; line-height: 1.6; max-width: 700px; text-align: center; margin-bottom: 30px; }
+p { 
+    font-family: 'Exo 2', sans-serif;
+    color: #ddd; 
+    line-height: 1.6; 
+    max-width: 700px; 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+
+/* Listy i drobny tekst (np. przypisy) też Exo 2 */
+li, small {
+    font-family: 'Exo 2', sans-serif;
+}
 
 /* --- GRID Z BOKSAMI (Karty) --- */
 .container {
@@ -268,8 +288,13 @@ p { color: #ddd; line-height: 1.6; max-width: 700px; text-align: center; margin-
 
 .card-img img { width: 100%; height: 100%; object-fit: cover; }
 
-.card-info { padding: 20px; text-align: left; }
-.card-info h3 { text-align:center; color: #ff0000; margin-bottom: 10px; font-size: 1.3rem; } /* Czerwone nagłówki */
+.card-info { padding: 20px; text-align: left; font-family: 'Exo 2', sans-serif; }
+.card-info h3 { 
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align:center; color: #ff0000; margin-bottom: 10px; font-size: 1.2rem; 
+} /* Czerwone nagłówki */
 .card-info p { text-align: center; font-size: 0.95rem; margin-bottom: 0; color: #ccc; }
 
 .card-info h4 {
@@ -284,7 +309,17 @@ p { color: #ddd; line-height: 1.6; max-width: 700px; text-align: center; margin-
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+    background: transparent !important;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.card .submit-btn:hover {
+    background: #ff0000 !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px #ff0000;
 }
 
 /* --- FORMULARZ KONTAKTOWY --- */
@@ -325,10 +360,10 @@ input:focus, textarea:focus {
 }
 
 .submit-btn {
-    padding: 15px;
-    background: linear-gradient(90deg, #ff0000, #8b0000) !important;
-    color: #fff;
-    border: none;
+    padding: 10px 25px;
+    background: transparent !important;
+    color: #ff0000;
+    border: 1px solid #ff0000;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
@@ -337,11 +372,15 @@ input:focus, textarea:focus {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    width: fit-content;
+    margin: 0 auto; /* Wyśrodkowanie */
 }
 
 .submit-btn:hover { 
-    background: #fff !important; 
-    color: #ff0000 !important;
+    background: #ff0000 !important; 
+    color: #000 !important;
     box-shadow: 0 0 20px #ff0000; 
 }
 
@@ -358,13 +397,46 @@ footer {
     font-family: 'Roboto', sans-serif;
     margin-top: auto;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* Reset stylów dla paragrafu w stopce (ważne dla wersji zapasowej) */
 footer p {
     margin: 0;
     color: inherit;
-    max-width: 100%; /* Reset globalnego ograniczenia szerokości, aby tekst był na środku */
+    max-width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- NOWE STYLE DLA STOPKI (UKŁAD LEWO-PRAWO) --- */
+.footer-inner {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Ikony po prawej, tekst wyśrodkowany absolutnie */
+    align-items: center;
+    padding: 0;
+    position: relative;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-socials a {
+    color: #5f5f5f;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: #ff0000; /* Czerwony kolor po najechaniu */
+    transform: translateY(-3px);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
 }
 
 /* Responsywność */
@@ -560,7 +632,7 @@ footer p {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 150px; /* Przesunięcie całej sekcji w dół dla lepszego wyśrodkowania */
+    padding-top: 350px; /* Przesunięcie całej sekcji w dół dla lepszego wyśrodkowania */
 }
 
 .reveal-text {
@@ -702,8 +774,8 @@ footer p {
 
 /* Złoty/Czerwony przycisk dla wyceny */
 .gold-btn {
-    background: linear-gradient(90deg, #ff0000, #8b0000) !important;
-    color: #fff !important;
+    /* Usunięto gradient, aby pasował do stylu oferta.html */
+    /* background: transparent !important; - dziedziczy z .submit-btn */
 }
 
 /* Responsywność - na komórkach jeden pod drugim */
@@ -857,7 +929,8 @@ nav.nav-thanks {
 
     /* Footer - mniejsza czcionka */
     footer { padding: 15px; }
-    footer p { font-size: 0.65rem; padding: 0; }
+    footer p { font-size: 0.65rem; padding: 0; position: static; transform: none; }
+    .footer-inner { flex-direction: column; gap: 15px; } /* Na telefonie jeden pod drugim */
     
     /* Hero Section */
     .hero-text-section {
@@ -897,10 +970,10 @@ nav.nav-thanks {
 
     /* Animowane obrazy (Animated Image Container) */
     .animated-image-container {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px; /* Mniejszy padding */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding: 5px; /* Minimalny padding dla maksymalnego rozmiaru */
         flex-direction: column; /* Jeden pod drugim jeśli są dwa */
         gap: 20px;
     }
