@@ -324,7 +324,7 @@ function initSplashScreen() {
         document.documentElement.style.overflow = ''; // Odblokuj scrollowanie html
         window.scrollTo(0, 0); // Upewnij się, że strona jest na górze po animacji
         setTimeout(() => splashDiv.remove(), 3000); // Usuń element z DOM po zakończeniu animacji
-    }, 1000); // Czas wyświetlania intro (1 sekunda)
+    }, 1500); // Czas wyświetlania intro (1 sekunda)
 }
 
 window.addEventListener('DOMContentLoaded', initSplashScreen);
