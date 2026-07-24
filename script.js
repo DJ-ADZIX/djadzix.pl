@@ -231,9 +231,9 @@ function loadFooter() {
     const footerHTML = `
         <footer>
             <div class="footer-inner">
-                <p>&copy; 2026 AdzixPL. Wszelkie prawa zastrzeżone.</p>
+                <p>&copy; 2026 djadzix. Wszelkie prawa zastrzeżone.</p>
                 <div class="footer-socials">
-                    <a href="https://www.facebook.com/DJADZIX" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/djadzix" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/xjestemadzix" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://www.youtube.com/@AdzixPL" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 </div>
