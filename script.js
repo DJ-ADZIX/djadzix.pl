@@ -307,7 +307,7 @@ function initSplashScreen() {
     splashDiv.id = 'splash-screen';
     
     const splashImg = document.createElement('img');
-    splashImg.src = "GRAFIKI/PNG/ADZIX_TAPETA.png"; // Ścieżka do Twojej grafiki
+    splashImg.src = "GRAFIKI/PNG/ADZIX_TAPETAv1.png"; // Ścieżka do Twojej grafiki
     splashImg.alt = 'AdzixPL';
     
     splashDiv.appendChild(splashImg);
